@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MenuItem from './MenuItem'
 
-export class FoodMenu extends Component {
+export class RestroMenu extends Component {
   render() {
     return (
       <div>
@@ -17,4 +17,4 @@ export class FoodMenu extends Component {
   }
 }
 
-export default FoodMenu
+export default RestroMenu
