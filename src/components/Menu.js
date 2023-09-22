@@ -84,7 +84,8 @@ export class Menu extends Component {
                 <div className="col-2" key={index}>
                   <MenuItem
                     item={element.source.name ? element.source.name : ""}
-                    description={element.title ? element.title : ""}
+                    title={element.title ? element.title : ""}
+                    description={element.description ? element.description : ""}
                     imageUrl={element.urlToImage}
                     newsUrl={element.url}
                   />

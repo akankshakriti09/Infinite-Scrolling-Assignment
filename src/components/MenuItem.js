@@ -1,13 +1,41 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 
-export class MenuItem extends Component {
-  render() {
-    let { item, description, imageUrl, newsUrl } = this.props; //destructuring
-    return (
-      
-        <div className="my-2">
-            <a rel="noreferrer" href={newsUrl} target="_blank">
-          <div className="card" style={{ width: "12rem" }}>
+const MenuItem = ({ item, title, description, imageUrl }) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <div className="my-2">
+        <div
+          className="card"
+          style={{ width: "12rem" }}
+          onClick={() => handleShow()}
+        >
+          <img
+            src={
+              !imageUrl
+                ? "https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png"
+                : imageUrl
+            }
+            className="card-img-top"
+            alt="..."
+          />
+          <div className="card-body">
+            <h5 className="card-title">{item}</h5>
+            <p className="card-text">{title}</p>
+          </div>
+        </div>
+      </div>
+
+      <Modal size="lg" show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{item}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
             <img
               src={
                 !imageUrl
@@ -17,16 +45,20 @@ export class MenuItem extends Component {
               className="card-img-top"
               alt="..."
             />
-            <div className="card-body">
-              <h5 className="card-title">{item}</h5>
-              <p className="card-text">{description}</p>
-            </div>
           </div>
-          </a>
-        </div>
-      
-    );
-  }
-}
+          <div>{description}</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
 
 export default MenuItem;
