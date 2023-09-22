@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const MenuItem = ({ item, title, description, imageUrl }) => {

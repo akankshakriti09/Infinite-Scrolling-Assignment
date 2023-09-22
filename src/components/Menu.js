@@ -66,9 +66,12 @@ export class Menu extends Component {
   render() {
     return (
       <>
+      
         <h2 className="text-center" style={{ margin: "30px 0px" }}>
           News Channel List
         </h2>
+
+    
         {this.state.loading && <Spinner />}
 
         {/* Adding Infinite scroll component */}
@@ -78,8 +81,8 @@ export class Menu extends Component {
           hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<Spinner />} //Adding spinner loader
         >
-          <div className="container">
-            <div className="row">
+          <div className="container" >
+            <div className="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
               {this?.state?.articles?.map((element, index) => (
                 <div className="col-2" key={index}>
                   <MenuItem
