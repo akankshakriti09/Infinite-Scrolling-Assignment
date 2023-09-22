@@ -9,8 +9,8 @@ export class MenuItem extends Component {
             <div className="card" style={{width: "12rem"}}>
               <img src= {imageUrl} className="card-img-top" alt="..."/>
                     <div className="card-body">
-                        <h5 className="card-title">{item}...</h5>
-                        <p className="card-text">{description}...</p>
+                        <h5 className="card-title">{item}</h5>
+                        <p className="card-text">{description}</p>
                     </div>
             </div>
       </div>

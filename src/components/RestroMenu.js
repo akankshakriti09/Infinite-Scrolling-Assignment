@@ -7,7 +7,7 @@ export class RestroMenu extends Component {
     super();
     console.log("Hello I am Constructor from RestroMenu Component");
     this.state = {
-      products: [],
+      memes: [],
       loading: false,
       page: 1
     }
@@ -18,7 +18,31 @@ export class RestroMenu extends Component {
       let data = await fetch(url);
       let parsedData = await data.json()
       console.log(parsedData);
-      this.setState({products: parsedData.products})
+      this.setState({memes: parsedData.memes})
+    }
+
+    handlePrevClick = async ()=>{
+      console.log("Previous");
+      let url = `https://api.imgflip.com/get_memes?page=${this.state.page - 1 }`;
+      let data = await fetch(url);
+      let parsedData = await data.json()
+      console.log(parsedData);
+      this.setState({
+        page: this.state.page - 1,
+        memes: parsedData.memes
+      })
+    }
+
+    handleNextClick = async ()=>{
+      console.log("Next");
+      let url = `https://api.imgflip.com/get_memes?page=${this.state.page + 1 }`;
+      let data = await fetch(url);
+      let parsedData = await data.json()
+      console.log(parsedData);
+      this.setState({
+        page: this.state.page + 1,
+        memes: parsedData.memes
+      })
     }
 
   render() {
@@ -27,7 +51,7 @@ export class RestroMenu extends Component {
         <h2>Restaurant Menu</h2>
         {/*MenuItem Component added here*/}
         <div className="row">
-                  {this?.state?.products?.map((element) => {
+                  {this?.state?.memes?.map((element) => {
                            return <div className="col-md-2"  key={element.id}>
                                  <MenuItem item={element.name} description={element.width} imageUrl={element.url}/>
                          </div> 
@@ -35,9 +59,9 @@ export class RestroMenu extends Component {
                   }    
 
                   <div>
-                    <div className="container">
-                      <button type="button" class="btn btn dark">Previous</button>
-                      <button type="button" class="btn btn dark">Next</button>
+                    <div className="container d-flex justify-content-between">
+                      <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+                      <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr; </button>
                     </div>
                   </div>
          
